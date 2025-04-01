@@ -1,49 +1,49 @@
-# Pipeline de Dados para Análise de Saúde Mental
+# Mental Well-being Data Analysis Pipeline
 
-Este projeto implementa um pipeline completo de engenharia de dados para análise de padrões em saúde mental, utilizando diversas tecnologias modernas.
+This project implements a full data engineering pipeline to analyze mental health patterns using a modern tech stack.
 
-## Tecnologias Utilizadas
+## Technologies Used
 
-- **IaC**: Terraform
-- **Ambiente**: Windows local
-- **Orquestração de fluxo de trabalho**: Mage
-- **Data Lake**: Azurite
-- **Data Warehouse**: DuckDB
-- **Transformação de dados**: DBT
-- **Visualização**: Streamlit
+- **Infrastructure as Code (IaC)**: Terraform  
+- **Local Environment**: Windows  
+- **Workflow Orchestration**: Mage  
+- **Data Lake**: Azurite  
+- **Data Warehouse**: DuckDB  
+- **Data Transformation**: DBT  
+- **Data Visualization**: Streamlit  
 
-## Pré-requisitos
+## Prerequisites
 
-Antes de começar, certifique-se de ter instalado:
+Ensure the following tools are installed:
 
-- Python 3.8+
-- Docker
-- Terraform
-- Git
+- Python 3.8 or later  
+- Docker  
+- Terraform  
+- Git  
 
-## Instalação e Configuração
+## Installation and Setup
 
-### 1. Clone o repositório
+### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/seu-usuario/mental_health_pipeline.git
+git clone https://github.com/victorfxz//Mental-Well-being-Monitor.git
 cd mental_health_pipeline
 ```
 
-### 2. Criar ambiente virtual Python
+### 2. Create a Python Virtual Environment
 
 ```bash
 python -m venv venv
-.\.venv\Scripts\activate   # Windows
+.\.venv\Scripts\activate   # For Windows
 ```
 
-### 3. Instalar dependências básicas
+### 3. Install Required Dependencies
 
 ```bash
 pip install -r requirements.txt
 ```
 
-### 4. Inicializar a infraestrutura com Terraform
+### 4. Initialize Infrastructure with Terraform
 
 ```bash
 cd terraform
@@ -52,30 +52,30 @@ terraform apply -auto-approve
 cd ..
 ```
 
-Este comando irá:
-- Iniciar o Azurite (via Docker) para servir como Data Lake
-- Criar as pastas necessárias para o projeto
-- Baixar o conjunto de dados de exemplo
-- Instalar e configurar Mage, DBT e Streamlit
+This step will:
+- Launch Azurite (via Docker) to serve as the local Data Lake  
+- Create the necessary project directories  
+- Download the sample dataset  
+- Install and configure Mage, DBT, and Streamlit  
 
-### 5. Configurar e executar o Mage
+### 5. Configure and Run Mage
 
 ```bash
 cd mage_project
 mage start
 ```
 
-No ambiente web do Mage (navegador), que normalmente abre em `http://localhost:6789`:
+In Mage's web interface (usually at `http://localhost:6789`):
 
-1. Clique em "New pipeline" e selecione "Data Pipeline"
-2. Nomeie como "mental_health_pipeline"
-3. Importe os arquivos Python definidos neste projeto:
-   - Crie um data loader: `load_mental_health_data.py`
-   - Crie dois data exporters: `export_to_azurite.py` e `export_to_duckdb.py`
-   - Configure a pipeline principal: `mental_health_pipeline.py`
-4. Execute a pipeline completa
+1. Click on "New pipeline" and choose "Data Pipeline"  
+2. Name it `mental_health_pipeline`  
+3. Import the project’s predefined Python files:
+   - Create a data loader: `load_mental_health_data.py`
+   - Add two data exporters: `export_to_azurite.py` and `export_to_duckdb.py`
+   - Define the main pipeline: `mental_health_pipeline.py`  
+4. Run the complete pipeline  
 
-### 6. Executar transformações com DBT
+### 6. Run Transformations with DBT
 
 ```bash
 cd ../dbt_project
@@ -84,70 +84,71 @@ dbt run
 dbt test
 ```
 
-Isso irá:
-- Transformar os dados brutos no DuckDB
-- Criar as tabelas dimensionais e de fatos
-- Executar testes para garantir a qualidade dos dados
+This will:
+- Transform raw data within DuckDB  
+- Create dimension and fact tables  
+- Run data quality tests  
 
-### 7. Visualizar os dados com Streamlit
+### 7. Visualize Data with Streamlit
 
 ```bash
 cd ../streamlit
 streamlit run app.py
 ```
 
-O dashboard Streamlit estará disponível em `http://localhost:8501`
+The dashboard will be available at `http://localhost:8501`.
 
-## Estrutura da Pipeline
+## Pipeline Overview
 
-O pipeline de dados segue os seguintes passos:
+The data pipeline consists of the following stages:
 
-1. **Extração**: Carregamento dos dados brutos de saúde mental
-2. **Carregamento no Data Lake**: Armazenamento dos dados brutos no Azurite
-3. **Carregamento no Data Warehouse**: Transferência dos dados para o DuckDB
-4. **Transformação**: Normalização e enriquecimento dos dados com DBT
-5. **Visualização**: Análise interativa dos dados através do dashboard Streamlit
+1. **Extraction**: Load raw mental health data  
+2. **Load to Data Lake**: Store raw data in Azurite  
+3. **Load to Data Warehouse**: Transfer data to DuckDB  
+4. **Transformation**: Normalize and enrich data using DBT  
+5. **Visualization**: Perform interactive analysis with Streamlit dashboard  
 
-## Detalhes do Conjunto de Dados
+## Dataset Overview
 
-O conjunto de dados contém informações sobre saúde mental, incluindo:
-- Dados demográficos (gênero, país, ocupação)
-- Histórico familiar e de saúde mental
-- Indicadores de estresse e bem-estar
-- Informações sobre tratamentos e opções de cuidado
+The dataset contains mental health-related information, including:
 
-## Customização
+- Demographics (gender, country, occupation)  
+- Family and personal mental health history  
+- Stress and well-being indicators  
+- Information on treatments and care options  
 
-Para utilizar um conjunto de dados maior ou diferente:
+## Customization
 
-1. Substitua o arquivo `data/mental_health_dataset.csv` pelo seu próprio conjunto de dados
-2. Ajuste os scripts de transformação no DBT conforme necessário
-3. Modifique a visualização no Streamlit para destacar os aspectos mais relevantes do seu conjunto de dados
+To use a different or larger dataset:
 
-## Resolução de Problemas
+1. Replace the file at `data/mental_health_dataset.csv` with your dataset  
+2. Update the DBT transformation scripts accordingly  
+3. Modify the Streamlit dashboard to highlight key aspects of your data  
 
-### Azurite não está funcionando
+## Troubleshooting
 
-Verifique se o Docker está em execução e se o container do Azurite foi criado:
+### Azurite Not Running
+
+Check if Docker is running and the Azurite container is active:
 
 ```bash
 docker ps | grep azurite
 ```
 
-Para reiniciar o Azurite:
+To restart Azurite:
 
 ```bash
 docker restart azurite
 ```
 
-### Erros no Mage
+### Mage Errors
 
-Verifique os logs do Mage em `mage_project/logs/` para identificar possíveis problemas.
+Check the logs located in `mage_project/logs/` for troubleshooting.
 
-### Erros no DBT
+### DBT Errors
 
-Execute `dbt debug` para verificar a conexão com o DuckDB.
+Run the following command to check the DuckDB connection:
 
-## Contribuições
-
-Contribuições são bem-vindas! Sinta-se à vontade para enviar pull requests ou abrir issues.
+```bash
+dbt debug
+```
