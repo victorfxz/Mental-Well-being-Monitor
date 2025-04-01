@@ -158,7 +158,7 @@ Streamlit, in combination with Plotly, generates an interactive, insightful dash
 
 ```bash
 git clone https://github.com/victorfxz/Mental-Well-being-Monitor.git
-cd mental_health_pipeline
+cd Mental-Well-being-Monitor
 python -m venv venv
 .\.venv\Scripts\activate   # Windows
 pip install -r requirements.txt
@@ -239,6 +239,8 @@ health-de-zoomcamp-victor/
 │   ├── outputs.tf
 │   └── variables.tf
 ├── requirements.txt
+├── dockerfile
+├── README
 └── setup.sh
 ```
 
